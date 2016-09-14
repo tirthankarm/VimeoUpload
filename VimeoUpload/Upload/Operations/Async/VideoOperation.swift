@@ -28,7 +28,7 @@ import Foundation
 
 class VideoOperation: ConcurrentOperation
 {
-    private let sessionManager: VimeoSessionManager
+    private let sessionManager: VimeoSessionManagerUPLOADPOSTFIX
     private let videoUri: String
     
     private var task: NSURLSessionDataTask?
@@ -38,7 +38,7 @@ class VideoOperation: ConcurrentOperation
     
     // MARK: - Initialization
     
-    init(sessionManager: VimeoSessionManager, videoUri: String)
+    init(sessionManager: VimeoSessionManagerUPLOADPOSTFIX, videoUri: String)
     {
         self.sessionManager = sessionManager
         self.videoUri = videoUri

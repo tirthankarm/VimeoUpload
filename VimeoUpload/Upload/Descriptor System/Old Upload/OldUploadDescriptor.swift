@@ -25,6 +25,7 @@
 //
 
 import Foundation
+import AFNetworking
 
 class OldUploadDescriptor: ProgressDescriptor, VideoDescriptor
 {
@@ -80,7 +81,7 @@ class OldUploadDescriptor: ProgressDescriptor, VideoDescriptor
     
     override func prepare(sessionManager sessionManager: AFURLSessionManager) throws
     {
-        let sessionManager = sessionManager as! VimeoSessionManager
+        let sessionManager = sessionManager as! VimeoSessionManagerUPLOADPOSTFIX
 
         do
         {
@@ -141,8 +142,8 @@ class OldUploadDescriptor: ProgressDescriptor, VideoDescriptor
     
     override func taskDidFinishDownloading(sessionManager sessionManager: AFURLSessionManager, task: NSURLSessionDownloadTask, url: NSURL) -> NSURL?
     {
-        let sessionManager = sessionManager as! VimeoSessionManager
-        let responseSerializer = sessionManager.responseSerializer as! VimeoResponseSerializer
+        let sessionManager = sessionManager as! VimeoSessionManagerUPLOADPOSTFIX
+        let responseSerializer = sessionManager.responseSerializer as! VimeoResponseSerializerUPLOADPOSTFIX
         
         do
         {
@@ -203,7 +204,7 @@ class OldUploadDescriptor: ProgressDescriptor, VideoDescriptor
         
         do
         {
-            let sessionManager = sessionManager as! VimeoSessionManager
+            let sessionManager = sessionManager as! VimeoSessionManagerUPLOADPOSTFIX
             try self.transitionToState(request: nextRequest!, sessionManager: sessionManager)
             self.resume(sessionManager: sessionManager)
         }
@@ -217,14 +218,14 @@ class OldUploadDescriptor: ProgressDescriptor, VideoDescriptor
     
     // MARK: Private API
     
-    private func transitionToState(request request: OldUploadRequest, sessionManager: VimeoSessionManager) throws
+    private func transitionToState(request request: OldUploadRequest, sessionManager: VimeoSessionManagerUPLOADPOSTFIX) throws
     {
         self.currentRequest = request
         let task = try self.taskForRequest(request, sessionManager: sessionManager)
         self.currentTaskIdentifier = task.taskIdentifier
     }
     
-    private func taskForRequest(request: OldUploadRequest, sessionManager: VimeoSessionManager) throws -> NSURLSessionTask
+    private func taskForRequest(request: OldUploadRequest, sessionManager: VimeoSessionManagerUPLOADPOSTFIX) throws -> NSURLSessionTask
     {
         switch request
         {

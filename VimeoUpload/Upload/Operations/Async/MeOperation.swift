@@ -28,7 +28,7 @@ import Foundation
 
 class MeOperation: ConcurrentOperation
 {
-    private let sessionManager: VimeoSessionManager
+    private let sessionManager: VimeoSessionManagerUPLOADPOSTFIX
     
     private var task: NSURLSessionDataTask?
 
@@ -37,7 +37,7 @@ class MeOperation: ConcurrentOperation
     
     // MARK: - Initialization
 
-    init(sessionManager: VimeoSessionManager)
+    init(sessionManager: VimeoSessionManagerUPLOADPOSTFIX)
     {
         self.sessionManager = sessionManager
     

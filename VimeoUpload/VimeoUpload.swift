@@ -36,7 +36,7 @@ class VimeoUpload<T: VideoDescriptor>
     // MARK:
     
     let descriptorManager: ReachableDescriptorManager
-    let foregroundSessionManager: VimeoSessionManager
+    let foregroundSessionManager: VimeoSessionManagerUPLOADPOSTFIX
     
     // MARK: 
     
@@ -53,7 +53,7 @@ class VimeoUpload<T: VideoDescriptor>
 
     init(backgroundSessionIdentifier: String, authTokenBlock: AuthTokenBlock)
     {
-        self.foregroundSessionManager = VimeoSessionManager.defaultSessionManager(authTokenBlock: authTokenBlock)
+        self.foregroundSessionManager = VimeoSessionManagerUPLOADPOSTFIX.defaultSessionManager(authTokenBlock: authTokenBlock)
         self.deletionManager = VideoDeletionManager(sessionManager: self.foregroundSessionManager)
         self.descriptorManager = ReachableDescriptorManager(name: self.dynamicType.Name, backgroundSessionIdentifier: backgroundSessionIdentifier, authTokenBlock: authTokenBlock)
     }

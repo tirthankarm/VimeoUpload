@@ -25,6 +25,7 @@
 //
 
 import Foundation
+import AFNetworking
 
 @objc protocol VideoRefreshManagerDelegate
 {
@@ -37,7 +38,7 @@ import Foundation
     
     // MARK:
     
-    private let sessionManager: VimeoSessionManager
+    private let sessionManager: VimeoSessionManagerUPLOADPOSTFIX
     private weak var delegate: VideoRefreshManagerDelegate?
     
     // MARK:
@@ -53,7 +54,7 @@ import Foundation
         self.removeObservers()
     }
     
-    init(sessionManager: VimeoSessionManager, delegate: VideoRefreshManagerDelegate)
+    init(sessionManager: VimeoSessionManagerUPLOADPOSTFIX, delegate: VideoRefreshManagerDelegate)
     {
         self.sessionManager = sessionManager
         self.delegate = delegate

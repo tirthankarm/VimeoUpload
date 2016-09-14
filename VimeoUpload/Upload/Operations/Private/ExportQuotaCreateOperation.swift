@@ -30,7 +30,7 @@ import AVFoundation
 class ExportQuotaCreateOperation: ConcurrentOperation
 {
     let me: VIMUser
-    let sessionManager: VimeoSessionManager
+    let sessionManager: VimeoSessionManagerUPLOADPOSTFIX
     var videoSettings: VideoSettings?
     let operationQueue: NSOperationQueue
     
@@ -56,7 +56,7 @@ class ExportQuotaCreateOperation: ConcurrentOperation
     
     // MARK: - Initialization
     
-    init(me: VIMUser, sessionManager: VimeoSessionManager, videoSettings: VideoSettings? = nil)
+    init(me: VIMUser, sessionManager: VimeoSessionManagerUPLOADPOSTFIX, videoSettings: VideoSettings? = nil)
     {
         self.me = me
         self.sessionManager = sessionManager

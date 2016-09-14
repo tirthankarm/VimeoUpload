@@ -25,41 +25,42 @@
 //
 
 import Foundation
+import AFNetworking
 
 typealias AuthTokenBlock = () -> String?
 
-class VimeoSessionManager: AFHTTPSessionManager
+class VimeoSessionManagerUPLOADPOSTFIX: AFHTTPSessionManager
 {    
     // MARK: - Default Session Initialization
     
-    static func defaultSessionManager(authToken authToken: String) -> VimeoSessionManager
+    static func defaultSessionManager(authToken authToken: String) -> VimeoSessionManagerUPLOADPOSTFIX
     {
         let sessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration()
         
-        return VimeoSessionManager(sessionConfiguration: sessionConfiguration, authToken: authToken)
+        return VimeoSessionManagerUPLOADPOSTFIX(sessionConfiguration: sessionConfiguration, authToken: authToken)
     }
 
-    static func defaultSessionManager(authTokenBlock authTokenBlock: AuthTokenBlock) -> VimeoSessionManager
+    static func defaultSessionManager(authTokenBlock authTokenBlock: AuthTokenBlock) -> VimeoSessionManagerUPLOADPOSTFIX
     {
         let sessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration()
         
-        return VimeoSessionManager(sessionConfiguration: sessionConfiguration, authTokenBlock: authTokenBlock)
+        return VimeoSessionManagerUPLOADPOSTFIX(sessionConfiguration: sessionConfiguration, authTokenBlock: authTokenBlock)
     }
 
     // MARK: - Background Session Initialization
     
-    static func backgroundSessionManager(identifier identifier: String, authToken: String) -> VimeoSessionManager
+    static func backgroundSessionManager(identifier identifier: String, authToken: String) -> VimeoSessionManagerUPLOADPOSTFIX
     {
         let sessionConfiguration = NSURLSessionConfiguration.backgroundSessionConfigurationWithIdentifier(identifier)
         
-        return VimeoSessionManager(sessionConfiguration: sessionConfiguration, authToken: authToken)
+        return VimeoSessionManagerUPLOADPOSTFIX(sessionConfiguration: sessionConfiguration, authToken: authToken)
     }
 
-    static func backgroundSessionManager(identifier identifier: String, authTokenBlock: AuthTokenBlock) -> VimeoSessionManager
+    static func backgroundSessionManager(identifier identifier: String, authTokenBlock: AuthTokenBlock) -> VimeoSessionManagerUPLOADPOSTFIX
     {
         let sessionConfiguration = NSURLSessionConfiguration.backgroundSessionConfigurationWithIdentifier(identifier)
         
-        return VimeoSessionManager(sessionConfiguration: sessionConfiguration, authTokenBlock: authTokenBlock)
+        return VimeoSessionManagerUPLOADPOSTFIX(sessionConfiguration: sessionConfiguration, authTokenBlock: authTokenBlock)
     }
 
     // MARK: Initialization
@@ -75,8 +76,8 @@ class VimeoSessionManager: AFHTTPSessionManager
     {        
         super.init(baseURL: VimeoBaseURLString, sessionConfiguration: sessionConfiguration)
         
-        self.requestSerializer = VimeoRequestSerializer(authTokenBlock: authTokenBlock)
-        self.responseSerializer = VimeoResponseSerializer()
+        self.requestSerializer = VimeoRequestSerializerUPLOADPOSTFIX(authTokenBlock: authTokenBlock)
+        self.responseSerializer = VimeoResponseSerializerUPLOADPOSTFIX()
     }
     
     required init?(coder aDecoder: NSCoder)

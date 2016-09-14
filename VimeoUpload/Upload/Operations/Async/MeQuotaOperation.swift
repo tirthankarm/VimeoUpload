@@ -36,7 +36,7 @@ import AVFoundation
 
 class MeQuotaOperation: ConcurrentOperation
 {    
-    let sessionManager: VimeoSessionManager
+    let sessionManager: VimeoSessionManagerUPLOADPOSTFIX
     
     private(set) var me: VIMUser?
     private let operationQueue: NSOperationQueue
@@ -55,7 +55,7 @@ class MeQuotaOperation: ConcurrentOperation
         }
     }
     
-    init(sessionManager: VimeoSessionManager, me: VIMUser? = nil)
+    init(sessionManager: VimeoSessionManagerUPLOADPOSTFIX, me: VIMUser? = nil)
     {
         self.sessionManager = sessionManager
         self.me = me

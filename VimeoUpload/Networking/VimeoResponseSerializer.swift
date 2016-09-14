@@ -25,8 +25,9 @@
 //
 
 import Foundation
+import AFNetworking
 
-class VimeoResponseSerializer: AFJSONResponseSerializer
+class VimeoResponseSerializerUPLOADPOSTFIX: AFJSONResponseSerializer
 {
     private static let ErrorDomain = "VimeoResponseSerializerErrorDomain"
     
@@ -34,7 +35,7 @@ class VimeoResponseSerializer: AFJSONResponseSerializer
     {
         super.init()
 
-        self.acceptableContentTypes = VimeoResponseSerializer.acceptableContentTypes()
+        self.acceptableContentTypes = VimeoResponseSerializerUPLOADPOSTFIX.acceptableContentTypes()
         self.readingOptions = .AllowFragments
     }
 

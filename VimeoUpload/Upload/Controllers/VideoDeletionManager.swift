@@ -25,6 +25,7 @@
 //
 
 import Foundation
+import AFNetworking
 
 class VideoDeletionManager: NSObject
 {
@@ -33,7 +34,7 @@ class VideoDeletionManager: NSObject
     
     // MARK:
     
-    private let sessionManager: VimeoSessionManager
+    private let sessionManager: VimeoSessionManagerUPLOADPOSTFIX
     private let retryCount: Int
     
     // MARK:
@@ -50,7 +51,7 @@ class VideoDeletionManager: NSObject
         self.removeObservers()
     }
         
-    init(sessionManager: VimeoSessionManager, retryCount: Int = VideoDeletionManager.DefaultRetryCount)
+    init(sessionManager: VimeoSessionManagerUPLOADPOSTFIX, retryCount: Int = VideoDeletionManager.DefaultRetryCount)
     {
         self.sessionManager = sessionManager
         self.retryCount = retryCount

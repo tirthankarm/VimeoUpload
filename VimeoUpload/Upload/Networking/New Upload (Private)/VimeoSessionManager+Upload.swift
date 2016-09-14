@@ -26,11 +26,11 @@
 
 import Foundation
 
-extension VimeoSessionManager
+extension VimeoSessionManagerUPLOADPOSTFIX
 {
     func createVideoDataTask(url url: NSURL, videoSettings: VideoSettings?, completionHandler: UploadTicketCompletionHandler) throws -> NSURLSessionDataTask
     {
-        let request = try (self.requestSerializer as! VimeoRequestSerializer).createVideoRequestWithUrl(url, videoSettings: videoSettings)
+        let request = try (self.requestSerializer as! VimeoRequestSerializerUPLOADPOSTFIX).createVideoRequestWithUrl(url, videoSettings: videoSettings)
         
         let task = self.dataTaskWithRequest(request, completionHandler: { [weak self] (response, responseObject, error) -> Void in
             
@@ -44,7 +44,7 @@ extension VimeoSessionManager
                 
                 do
                 {
-                    let uploadTicket = try (strongSelf.responseSerializer as! VimeoResponseSerializer).processCreateVideoResponse(response, responseObject: responseObject, error: error)
+                    let uploadTicket = try (strongSelf.responseSerializer as! VimeoResponseSerializerUPLOADPOSTFIX).processCreateVideoResponse(response, responseObject: responseObject, error: error)
                     completionHandler(uploadTicket: uploadTicket, error: nil)
                 }
                 catch let error as NSError

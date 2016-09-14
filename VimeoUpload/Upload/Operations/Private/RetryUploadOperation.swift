@@ -28,7 +28,7 @@ import Foundation
 
 class RetryUploadOperation: ConcurrentOperation
 {
-    private let sessionManager: VimeoSessionManager
+    private let sessionManager: VimeoSessionManagerUPLOADPOSTFIX
     let operationQueue: NSOperationQueue
     
     // MARK:
@@ -52,7 +52,7 @@ class RetryUploadOperation: ConcurrentOperation
     
     // MARK: - Initialization
     
-    init(sessionManager: VimeoSessionManager)
+    init(sessionManager: VimeoSessionManagerUPLOADPOSTFIX)
     {
         self.sessionManager = sessionManager
         self.operationQueue = NSOperationQueue()

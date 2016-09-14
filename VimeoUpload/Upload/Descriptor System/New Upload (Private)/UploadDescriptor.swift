@@ -25,6 +25,7 @@
 //
 
 import Foundation
+import AFNetworking
 
 class UploadDescriptor: ProgressDescriptor, VideoDescriptor
 {
@@ -84,7 +85,7 @@ class UploadDescriptor: ProgressDescriptor, VideoDescriptor
                 throw NSError(domain: UploadErrorDomain.Upload.rawValue, code: 0, userInfo: [NSLocalizedDescriptionKey: "Attempt to initiate upload but the uploadUri is nil."])
             }
             
-            let sessionManager = sessionManager as! VimeoSessionManager
+            let sessionManager = sessionManager as! VimeoSessionManagerUPLOADPOSTFIX
             let task = try sessionManager.uploadVideoTask(source: self.url, destination: uploadLinkSecure, progress: &self.progress, completionHandler: nil)
             
             self.currentTaskIdentifier = task.taskIdentifier

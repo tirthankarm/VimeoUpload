@@ -38,11 +38,11 @@ enum UploadTaskDescription: String
     case Video = "Video"
 }
 
-extension VimeoSessionManager
+extension VimeoSessionManagerUPLOADPOSTFIX
 {
     func meDataTask(completionHandler completionHandler: UserCompletionHandler) throws -> NSURLSessionDataTask
     {
-        let request = try (self.requestSerializer as! VimeoRequestSerializer).meRequest()
+        let request = try (self.requestSerializer as! VimeoRequestSerializerUPLOADPOSTFIX).meRequest()
 
         let task = self.dataTaskWithRequest(request, completionHandler: { [weak self] (response, responseObject, error) -> Void in
 
@@ -56,7 +56,7 @@ extension VimeoSessionManager
 
                 do
                 {
-                    let user = try (strongSelf.responseSerializer as! VimeoResponseSerializer).processMeResponse(response, responseObject: responseObject, error: error)
+                    let user = try (strongSelf.responseSerializer as! VimeoResponseSerializerUPLOADPOSTFIX).processMeResponse(response, responseObject: responseObject, error: error)
                     completionHandler(user: user, error: nil)
                 }
                 catch let error as NSError
@@ -73,7 +73,7 @@ extension VimeoSessionManager
 
     func myVideosDataTask(completionHandler completionHandler: VideosCompletionHandler) throws -> NSURLSessionDataTask
     {
-        let request = try (self.requestSerializer as! VimeoRequestSerializer).myVideosRequest()
+        let request = try (self.requestSerializer as! VimeoRequestSerializerUPLOADPOSTFIX).myVideosRequest()
         
         let task = self.dataTaskWithRequest(request, completionHandler: { [weak self] (response, responseObject, error) -> Void in
             
@@ -87,7 +87,7 @@ extension VimeoSessionManager
                 
                 do
                 {
-                    let videos = try (strongSelf.responseSerializer as! VimeoResponseSerializer).processMyVideosResponse(response, responseObject: responseObject, error: error)
+                    let videos = try (strongSelf.responseSerializer as! VimeoResponseSerializerUPLOADPOSTFIX).processMyVideosResponse(response, responseObject: responseObject, error: error)
                     completionHandler(videos: videos, error: nil)
                 }
                 catch let error as NSError
@@ -104,7 +104,7 @@ extension VimeoSessionManager
 
     func createVideoDownloadTask(url url: NSURL) throws -> NSURLSessionDownloadTask
     {
-        let request = try (self.requestSerializer as! VimeoRequestSerializer).createVideoRequestWithUrl(url)
+        let request = try (self.requestSerializer as! VimeoRequestSerializerUPLOADPOSTFIX).createVideoRequestWithUrl(url)
 
         let task = self.downloadTaskWithRequest(request, progress: nil, destination: nil, completionHandler: nil)
         
@@ -115,7 +115,7 @@ extension VimeoSessionManager
     
     func uploadVideoTask(source source: NSURL, destination: String, progress: AutoreleasingUnsafeMutablePointer<NSProgress?>, completionHandler: ErrorBlock?) throws -> NSURLSessionUploadTask
     {
-        let request = try (self.requestSerializer as! VimeoRequestSerializer).uploadVideoRequestWithSource(source, destination: destination)
+        let request = try (self.requestSerializer as! VimeoRequestSerializerUPLOADPOSTFIX).uploadVideoRequestWithSource(source, destination: destination)
         
         let task = self.uploadTaskWithRequest(request, fromFile: source, progress: progress, completionHandler: { [weak self] (response, responseObject, error) -> Void in
             
@@ -126,7 +126,7 @@ extension VimeoSessionManager
             
             do
             {
-                try (strongSelf.responseSerializer as! VimeoResponseSerializer).processUploadVideoResponse(response, responseObject: responseObject, error: error)
+                try (strongSelf.responseSerializer as! VimeoResponseSerializerUPLOADPOSTFIX).processUploadVideoResponse(response, responseObject: responseObject, error: error)
                 completionHandler(error: nil)
             }
             catch let error as NSError
@@ -143,7 +143,7 @@ extension VimeoSessionManager
     // For use with background sessions, use session delegate methods for destination and completion
     func activateVideoDownloadTask(uri activationUri: String) throws -> NSURLSessionDownloadTask
     {
-        let request = try (self.requestSerializer as! VimeoRequestSerializer).activateVideoRequestWithUri(activationUri)
+        let request = try (self.requestSerializer as! VimeoRequestSerializerUPLOADPOSTFIX).activateVideoRequestWithUri(activationUri)
         
         let task = self.downloadTaskWithRequest(request, progress: nil, destination: nil, completionHandler: nil)
         
@@ -155,7 +155,7 @@ extension VimeoSessionManager
     // For use with background sessions, use session delegate methods for destination and completion
     func videoSettingsDownloadTask(videoUri videoUri: String, videoSettings: VideoSettings) throws -> NSURLSessionDownloadTask
     {
-        let request = try (self.requestSerializer as! VimeoRequestSerializer).videoSettingsRequestWithUri(videoUri, videoSettings: videoSettings)
+        let request = try (self.requestSerializer as! VimeoRequestSerializerUPLOADPOSTFIX).videoSettingsRequestWithUri(videoUri, videoSettings: videoSettings)
         
         let task = self.downloadTaskWithRequest(request, progress: nil, destination: nil, completionHandler: nil)
         
@@ -166,7 +166,7 @@ extension VimeoSessionManager
 
     func videoSettingsDataTask(videoUri videoUri: String, videoSettings: VideoSettings, completionHandler: VideoCompletionHandler) throws -> NSURLSessionDataTask
     {
-        let request = try (self.requestSerializer as! VimeoRequestSerializer).videoSettingsRequestWithUri(videoUri, videoSettings: videoSettings)
+        let request = try (self.requestSerializer as! VimeoRequestSerializerUPLOADPOSTFIX).videoSettingsRequestWithUri(videoUri, videoSettings: videoSettings)
         
         let task = self.dataTaskWithRequest(request, completionHandler: { (response, responseObject, error) -> Void in
             
@@ -180,7 +180,7 @@ extension VimeoSessionManager
 
                 do
                 {
-                    let video = try (strongSelf.responseSerializer as! VimeoResponseSerializer).processVideoSettingsResponse(response, responseObject: responseObject, error: error)
+                    let video = try (strongSelf.responseSerializer as! VimeoResponseSerializerUPLOADPOSTFIX).processVideoSettingsResponse(response, responseObject: responseObject, error: error)
                     completionHandler(video: video, error: nil)
                 }
                 catch let error as NSError
@@ -197,7 +197,7 @@ extension VimeoSessionManager
     
     func deleteVideoDataTask(videoUri videoUri: String, completionHandler: ErrorBlock) throws -> NSURLSessionDataTask
     {
-        let request = try (self.requestSerializer as! VimeoRequestSerializer).deleteVideoRequestWithUri(videoUri)
+        let request = try (self.requestSerializer as! VimeoRequestSerializerUPLOADPOSTFIX).deleteVideoRequestWithUri(videoUri)
         
         let task = self.dataTaskWithRequest(request, completionHandler: { [weak self] (response, responseObject, error) -> Void in
             
@@ -208,7 +208,7 @@ extension VimeoSessionManager
             
             do
             {
-                try (strongSelf.responseSerializer as! VimeoResponseSerializer).processDeleteVideoResponse(response, responseObject: responseObject, error: error)
+                try (strongSelf.responseSerializer as! VimeoResponseSerializerUPLOADPOSTFIX).processDeleteVideoResponse(response, responseObject: responseObject, error: error)
                 completionHandler(error: nil)
             }
             catch let error as NSError
@@ -224,7 +224,7 @@ extension VimeoSessionManager
 
     func videoDataTask(videoUri videoUri: String, completionHandler: VideoCompletionHandler) throws -> NSURLSessionDataTask
     {
-        let request = try (self.requestSerializer as! VimeoRequestSerializer).videoRequestWithUri(videoUri)
+        let request = try (self.requestSerializer as! VimeoRequestSerializerUPLOADPOSTFIX).videoRequestWithUri(videoUri)
         
         let task = self.dataTaskWithRequest(request, completionHandler: { [weak self] (response, responseObject, error) -> Void in
             
@@ -235,7 +235,7 @@ extension VimeoSessionManager
             
             do
             {
-                let video = try (strongSelf.responseSerializer as! VimeoResponseSerializer).processVideoResponse(response, responseObject: responseObject, error: error)
+                let video = try (strongSelf.responseSerializer as! VimeoResponseSerializerUPLOADPOSTFIX).processVideoResponse(response, responseObject: responseObject, error: error)
                 completionHandler(video: video, error: nil)
             }
             catch let error as NSError

@@ -27,7 +27,7 @@
 import Foundation
 import AVFoundation
 
-extension VimeoRequestSerializer
+extension VimeoRequestSerializerUPLOADPOSTFIX
 {    
     func meRequest() throws -> NSMutableURLRequest
     {

@@ -26,7 +26,7 @@
 
 import Foundation
 
-extension VimeoResponseSerializer
+extension VimeoResponseSerializerUPLOADPOSTFIX
 {
     private static let LocationKey = "Location"
     

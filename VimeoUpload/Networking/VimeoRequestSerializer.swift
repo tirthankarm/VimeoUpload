@@ -25,8 +25,9 @@
 //
 
 import Foundation
+import AFNetworking
 
-class VimeoRequestSerializer: AFJSONRequestSerializer
+class VimeoRequestSerializerUPLOADPOSTFIX: AFJSONRequestSerializer
 {
     private static let AcceptHeaderKey = "Accept"
     private static let AuthorizationHeaderKey = "Authorization"
